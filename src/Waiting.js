@@ -2,10 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
 import { Button } from "react-native-elements";
+//import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 
 import { color } from "../constants.json";
+//import { deleteGame, getGame } from "./Helper/server";
+//import useInterval from "./Helper/useInterval";
 import useInterval from "./useInterval";
+//import { wsSend } from "../App";
 
 export default Waiting = ({ navigation }) => {
   const MMKV = new MMKVStorage.Loader().initialize();
@@ -13,18 +17,26 @@ export default Waiting = ({ navigation }) => {
   //const [game, setGame] = useState(MMKV.getMap("joinedGame"));
   const [roomInfo, setRoomInfo] = useState(null);
   const [playerView, setPlayersView] = useState([]);
-  const gameID = MMKV.getString("gameID");
-  const userID = MMKV.getString("userID");
+  //   const gameID = MMKV.getString("gameID");
+  //   const userID = MMKV.getString("userID");
+  const gameID = "gameID";
+  const userID = "userID";
   let status;
   let playerList = [];
+  
+  var Player = function() {
+    this.pid = pid;
+    this.name = name;
+  };
+
   var game = {
       gid: "Game ID",
       gname: "gameName",
       status: "PREPARE",
       //hostID: MMKV.getString("userID"),
-      hostID: "userID",
+      hostID: "pid1",
       //hostName: MMKV.getString("userName"),
-      hostName: "userName",
+      hostName: "userName1",
       checkpoints: [
           {
               cp1: "cp1",
@@ -39,9 +51,44 @@ export default Waiting = ({ navigation }) => {
             //   pid: MMKV.getString("userID"),
             //   name: MMKV.getString("userName"),
             //   avatar: "None",
-            pid: "userID",
-            name: "userName",
-            avatar: "None",
+            pid: "pid1",
+            name: "userName1",
+            avatar: "None1",
+          },
+          {
+            pid: "pid2",
+            name: "userName2",
+            avatar: "None2",
+          },
+          {
+            pid: "pid3",
+            name: "userName3",
+            avatar: "None3",
+          },
+          {
+            pid: "pid4",
+            name: "userName4",
+            avatar: "None4",
+          },
+          {
+            pid: "pid5",
+            name: "userName5",
+            avatar: "None5",
+          },
+          {
+            pid: "pid6",
+            name: "userName6",
+            avatar: "None6",
+          },
+          {
+            pid: "pid7",
+            name: "userName7",
+            avatar: "None7",
+          },
+          {
+            pid: "pid8",
+            name: "userName8",
+            avatar: "None8",
           }
         ],
       teams: ["RED", "BLUE"],
@@ -151,7 +198,8 @@ export default Waiting = ({ navigation }) => {
         titleStyle={{ color: "white", fontSize: 24 }}
         buttonStyle={{ backgroundColor: color.brown }}
         onPress={() => {
-          wsSend(JSON.stringify({ header: "START", content: gameID }));
+          //wsSend(JSON.stringify({ header: "START", content: gameID }));
+          console.log("start");
         }}
       ></Button>
     </SafeAreaView>
