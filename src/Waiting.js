@@ -1,19 +1,20 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
-import { Button } from "react-native-elements";
+import { Avatar, Button } from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { color } from "../constants.json";
 //import { deleteGame, getGame } from "./Helper/server";
 //import useInterval from "./Helper/useInterval";
 import useInterval from "./useInterval";
 //import { wsSend } from "../App";
+AsyncStorage.clear();
 
 export default Waiting = ({ navigation }) => {
   const MMKV = new MMKVStorage.Loader().initialize();
-
   //const [game, setGame] = useState(MMKV.getMap("joinedGame"));
   const [roomInfo, setRoomInfo] = useState(null);
   const [playerView, setPlayersView] = useState([]);
@@ -34,9 +35,9 @@ export default Waiting = ({ navigation }) => {
       gname: "gameName",
       status: "PREPARE",
       //hostID: MMKV.getString("userID"),
-      hostID: "pid1",
+      hostID: "userID",
       //hostName: MMKV.getString("userName"),
-      hostName: "userName1",
+      hostName: "userName",
       checkpoints: [
           {
               cp1: "cp1",
@@ -60,36 +61,36 @@ export default Waiting = ({ navigation }) => {
             name: "userName2",
             avatar: "None2",
           },
-          {
-            pid: "pid3",
-            name: "userName3",
-            avatar: "None3",
-          },
-          {
-            pid: "pid4",
-            name: "userName4",
-            avatar: "None4",
-          },
-          {
-            pid: "pid5",
-            name: "userName5",
-            avatar: "None5",
-          },
-          {
-            pid: "pid6",
-            name: "userName6",
-            avatar: "None6",
-          },
-          {
-            pid: "pid7",
-            name: "userName7",
-            avatar: "None7",
-          },
-          {
-            pid: "pid8",
-            name: "userName8",
-            avatar: "None8",
-          }
+        //   {
+        //     pid: "pid3",
+        //     name: "userName3",
+        //     avatar: "None3",
+        //   },
+        //   {
+        //     pid: "pid4",
+        //     name: "userName4",
+        //     avatar: "None4",
+        //   },
+        //   {
+        //     pid: "pid5",
+        //     name: "userName5",
+        //     avatar: "None5",
+        //   },
+        //   {
+        //     pid: "pid6",
+        //     name: "userName6",
+        //     avatar: "None6",
+        //   },
+        //   {
+        //     pid: "pid7",
+        //     name: "userName7",
+        //     avatar: "None7",
+        //   },
+        //   {
+        //     pid: "pid8",
+        //     name: "userName8",
+        //     avatar: "None8",
+        //   }
         ],
       teams: ["RED", "BLUE"],
     };
@@ -105,9 +106,9 @@ export default Waiting = ({ navigation }) => {
     navigation.replace("Home");
   };
 
-  useInterval(() => {
-    setRoomInfo(MMKV.getMap("roomInfo"));
-  }, 100);
+//   useInterval(() => {
+//     setRoomInfo(MMKV.getMap("roomInfo"));
+//   }, 100);
 
   useEffect(() => {
     let list = [];
@@ -150,6 +151,7 @@ export default Waiting = ({ navigation }) => {
             <Text style={styles.headerText} key={i}>
               {playerList[i]}
             </Text>
+
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
             <Text style={styles.headerText} key={i + 1}>
@@ -199,7 +201,7 @@ export default Waiting = ({ navigation }) => {
         buttonStyle={{ backgroundColor: color.brown }}
         onPress={() => {
           //wsSend(JSON.stringify({ header: "START", content: gameID }));
-          console.log("start");
+          console.log("start"+gameID);
         }}
       ></Button>
     </SafeAreaView>
@@ -249,6 +251,7 @@ const styles = StyleSheet.create({
     height: 60,
     flexDirection: "row",
     justifyContent: "space-between",
+    padding: 5,
   },
   leftPlayer: {
     flex: 0.36,
