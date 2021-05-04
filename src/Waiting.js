@@ -152,14 +152,30 @@ export default Waiting = ({ navigation }) => {
             <Text style={styles.LplayerName} key={i}>
                 {playerList[i]}
             </Text>
-            <Icon
-                reverse
-                name="rocket"
-                //size={20}
-                //color="white"
+            <Avatar
+                rounded
+                source={{
+                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                }}
+                //icon={{name: 'home'}}
             />
+            {/* <Icon
+                reverse
+                name="sc-telegram"
+                type="evilicon"
+                size={20}
+                color="white"
+            /> */}
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
+            <Avatar
+                rounded
+                
+                source={{
+                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                }}
+                //icon={{name: 'home'}}
+            />
             <Text style={styles.RplayerName} key={i+1}>
                 {playerList[i+1]}
             </Text>
@@ -177,9 +193,23 @@ export default Waiting = ({ navigation }) => {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
           <View style={styles.leftPlayer} key={i}>
-            <Text style={styles.headerText} key={i}>
-              {playerList[i]}
+            <Text style={styles.LplayerName} key={i}>
+                {playerList[i]}
             </Text>
+            <Avatar
+                rounded
+                source={{
+                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                }}
+                //icon={{name: 'home'}}
+            />
+            {/* <Icon
+                reverse
+                name="sc-telegram"
+                type="evilicon"
+                size={20}
+                color="white"
+            /> */}
           </View>
         </View>
       );
@@ -199,14 +229,20 @@ export default Waiting = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View>
+        <View style={styles.headerContainer}>
             <Text style={styles.headerText}>
                 {`${game.hostName}'s Room`}
                 {`\nRoom ID: ${game.gid}`}
             </Text>
+            <Avatar
+                rounded
+                //style={{alignSelf: "center"}}
+                source={{
+                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                }}
+                //icon={{name: 'home'}}
+            />
         </View>
-      </View>
       <ScrollView style={styles.playersListContainer}>{playerView}</ScrollView>
       <Button
         title={"Confirm"}
@@ -231,20 +267,22 @@ const styles = StyleSheet.create({
     marginTop: "10%",
     marginBottom: "20%",
     height: "10%",
-    backgroundColor: "black",
-    opacity: 0.5,
-    width: "48%",
+    backgroundColor: "#00000080",
+    width: "50%",
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
-    alignContent: "center",
+    //alignContent: "center",
     justifyContent: "center",
+    flexDirection: "row",
   },
   headerText: {
     fontSize: 14,
     fontWeight: "700",
+    width:"90%",
     color: "white",
-    textAlign: "center",
+    textAlign: "left",
     textAlignVertical: "center",
+    paddingLeft:"10%",
   },
   LplayerName: {
     fontSize: 14,
@@ -253,7 +291,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     textAlignVertical: "center",
-    paddingRight: 5,
+    paddingLeft:"10%",
   },
   RplayerName: {
     fontSize: 14,
@@ -266,9 +304,9 @@ const styles = StyleSheet.create({
   },
   playersListContainer: { height: "60%" },
   button: {
-    height: 40,
+    height: 60,
     width: "50%",
-    marginVertical: 50,
+    marginVertical: 30,
     alignSelf: "center",
     color: color.brown,
     borderRadius: 10,
@@ -290,6 +328,7 @@ const styles = StyleSheet.create({
   },
   leftPlayer: {
     //flex: 0.36,
+    flexDirection:"row",
     width: "40%",
     height: "100%",
     borderTopRightRadius: 50,
@@ -300,6 +339,7 @@ const styles = StyleSheet.create({
   },
   rightPlayer: {
     //flex: 0.36,
+    flexDirection:"row",
     width: "40%",
     height: "100%",
     borderTopLeftRadius: 50,
