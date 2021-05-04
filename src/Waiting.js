@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
-import { Avatar, Button } from "react-native-elements";
+import { Avatar, Button} from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -10,6 +10,8 @@ import { color } from "../constants.json";
 //import { deleteGame, getGame } from "./Helper/server";
 //import useInterval from "./Helper/useInterval";
 import useInterval from "./useInterval";
+//import { Icon } from "react-native-elements/dist/icons/Icon";
+import Icon from "react-native-vector-icons";
 //import { wsSend } from "../App";
 AsyncStorage.clear();
 
@@ -61,11 +63,11 @@ export default Waiting = ({ navigation }) => {
             name: "userName2",
             avatar: "None2",
           },
-        //   {
-        //     pid: "pid3",
-        //     name: "userName3",
-        //     avatar: "None3",
-        //   },
+          {
+            pid: "pid3",
+            name: "userName3",
+            avatar: "None3",
+          },
         //   {
         //     pid: "pid4",
         //     name: "userName4",
@@ -106,33 +108,32 @@ export default Waiting = ({ navigation }) => {
     navigation.replace("Home");
   };
 
-//   useInterval(() => {
-//     setRoomInfo(MMKV.getMap("roomInfo"));
-//   }, 100);
+  useInterval(() => {
+    setRoomInfo(MMKV.getMap("roomInfo"));
+  }, 100);
 
   useEffect(() => {
     let list = [];
-    game.players.map((value) => list.push(value.name));
-    playerList = list;
+    //game.players.map((value) => list.push(value.name));
+    playerList = ["Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10"];
     setPlayersView(renderPlayersList());
   }, []);
 
   useEffect(() => {
     if (roomInfo == null) return;
     status = roomInfo.status;
-    let game = MMKV.getMap("joinedGame");
+    //let game = MMKV.getMap("joinedGame");
     game.players = roomInfo.players;
-    let list = [];
-    roomInfo.players.map((value) => {
-      list.push(value.name);
-      if (value.team != null) {
-        if (value.pid === MMKV.getString("userID")) {
-          MMKV.setString("team", value.team);
-          MMKV.setInt("key", value.key);
-        }
-      }
-    });
-    playerList = list;
+    //let list = [];
+    // roomInfo.players.map((value) => {
+    //   list.push(value.name);
+    //   if (value.team != null) {
+    //     if (value.pid === MMKV.getString("userID")) {
+    //       MMKV.setString("team", value.team);
+    //       MMKV.setInt("key", value.key);
+    //     }
+    //   }
+    // });
     setPlayersView(renderPlayersList());
     if (status === "RUNNING") {
       navigation.replace("InGame");
@@ -148,15 +149,26 @@ export default Waiting = ({ navigation }) => {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
           <View style={styles.leftPlayer} key={i}>
-            <Text style={styles.headerText} key={i}>
-              {playerList[i]}
+            <Text style={styles.LplayerName} key={i}>
+                {playerList[i]}
             </Text>
-
+            <Icon
+                reverse
+                name="rocket"
+                //size={20}
+                //color="white"
+            />
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
-            <Text style={styles.headerText} key={i + 1}>
-              {playerList[i + 1]}
+            <Text style={styles.RplayerName} key={i+1}>
+                {playerList[i+1]}
             </Text>
+            {/* <Icon
+                //reverse
+                name="rocket"
+                size={20}
+                //color="white"
+            /> */}
           </View>
         </View>
       );
@@ -188,10 +200,12 @@ export default Waiting = ({ navigation }) => {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>
-          {`${game.hostName}'s Room`}
-          {`\nRoom ID: ${game.gid}`}
-        </Text>
+        <View>
+            <Text style={styles.headerText}>
+                {`${game.hostName}'s Room`}
+                {`\nRoom ID: ${game.gid}`}
+            </Text>
+        </View>
       </View>
       <ScrollView style={styles.playersListContainer}>{playerView}</ScrollView>
       <Button
@@ -209,14 +223,16 @@ export default Waiting = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: color.offWhite,
+    //backgroundColor: color.offWhite,
+    backgroundColor: color.darkGrey,
     flex: 1,
   },
   headerContainer: {
-    marginTop: 30,
-    marginBottom: 70,
+    marginTop: "10%",
+    marginBottom: "20%",
     height: "10%",
-    backgroundColor: "#00000080",
+    backgroundColor: "black",
+    opacity: 0.5,
     width: "48%",
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
@@ -226,13 +242,31 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 14,
     fontWeight: "700",
-    color: "#FFFFFFFF",
+    color: "white",
     textAlign: "center",
     textAlignVertical: "center",
   },
+  LplayerName: {
+    fontSize: 14,
+    fontWeight: "700",
+    width: "70%",
+    color: "white",
+    textAlign: "center",
+    textAlignVertical: "center",
+    paddingRight: 5,
+  },
+  RplayerName: {
+    fontSize: 14,
+    fontWeight: "700",
+    width: "70%",
+    color: "white",
+    textAlign: "center",
+    textAlignVertical: "center",
+    paddingRight: 5,
+  },
   playersListContainer: { height: "60%" },
   button: {
-    height: 50,
+    height: 40,
     width: "50%",
     marginVertical: 50,
     alignSelf: "center",
@@ -248,13 +282,15 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   playerListRowConatiner: {
-    height: 60,
+    height: 100,
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 5,
+    //padding: 5,
+    marginBottom: 5,
   },
   leftPlayer: {
-    flex: 0.36,
+    //flex: 0.36,
+    width: "40%",
     height: "100%",
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
@@ -263,7 +299,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   rightPlayer: {
-    flex: 0.36,
+    //flex: 0.36,
+    width: "40%",
     height: "100%",
     borderTopLeftRadius: 50,
     borderBottomLeftRadius: 50,
