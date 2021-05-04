@@ -179,12 +179,6 @@ export default Waiting = ({ navigation }) => {
             <Text style={styles.RplayerName} key={i+1}>
                 {playerList[i+1]}
             </Text>
-            {/* <Icon
-                //reverse
-                name="rocket"
-                size={20}
-                //color="white"
-            /> */}
           </View>
         </View>
       );
@@ -203,13 +197,6 @@ export default Waiting = ({ navigation }) => {
                 }}
                 //icon={{name: 'home'}}
             />
-            {/* <Icon
-                reverse
-                name="sc-telegram"
-                type="evilicon"
-                size={20}
-                color="white"
-            /> */}
           </View>
         </View>
       );
