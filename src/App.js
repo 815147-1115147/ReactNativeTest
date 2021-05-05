@@ -2,20 +2,20 @@ import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import InGame from "./components/InGame/InGame";
-import Login from "./components/Login";
-import SignUp from "./components/Signup";
-import Home from "./components/Home";
-import RealHome from "./components/RealHome";
-import Riddle from "./components/InGame/Riddle";
-import Sudoku from "./components/InGame/Sudoku";
-import CreateGame from "./components/CreateGame";
+// import InGame from "./components/InGame/InGame";
+// import Login from "./components/Login";
+// import SignUp from "./components/Signup";
+// import Home from "./components/Home";
+// import RealHome from "./components/RealHome";
+// import Riddle from "./components/InGame/Riddle";
+// import Sudoku from "./components/InGame/Sudoku";
+// import CreateGame from "./components/CreateGame";
 import Waiting from "./components/Waiting";
-import LoadingHome from "./components/LoadingHome";
-import setmap from "./components/setmap";
-import Maths from "./components/InGame/Math";
-import rsetmap from "./components/rsetmap";
-import history from "./components/history";
+// import LoadingHome from "./components/LoadingHome";
+// import setmap from "./components/setmap";
+// import Maths from "./components/InGame/Math";
+// import rsetmap from "./components/rsetmap";
+// import history from "./components/history";
 import { color } from "./constants";
 [];
 
@@ -51,7 +51,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Home"
           component={Home}
           options={{
@@ -61,7 +61,7 @@ const App = () => {
               backgroundColor: color.primary,
             },
           }}
-        />
+        /> */}
         <Stack.Screen
           name="Waiting"
           component={Waiting}
