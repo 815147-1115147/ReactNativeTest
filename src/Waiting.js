@@ -4,7 +4,7 @@ import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
 import { Avatar, Button} from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+// import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { color } from "../constants.json";
 //import { deleteGame, getGame } from "./Helper/server";
@@ -13,7 +13,7 @@ import useInterval from "./useInterval";
 //import { Icon } from "react-native-elements/dist/icons/Icon";
 import Icon from "react-native-vector-icons";
 //import { wsSend } from "../App";
-AsyncStorage.clear();
+// AsyncStorage.clear();
 
 export default Waiting = ({ navigation }) => {
   const MMKV = new MMKVStorage.Loader().initialize();
