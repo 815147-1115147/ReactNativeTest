@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Waiting from "./src/components/Waiting";
+import LoadingHome from "./src/components/LoadingHome";
 
 import {
   SafeAreaView,
@@ -38,6 +39,13 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
+        <Stack.Screen
+          name="LoadingHome"
+          component={LoadingHome}
+          options={() => ({
+            headerShown: false,
+          })}
+        />
         <Stack.Screen
           name="Waiting"
           component={Waiting}

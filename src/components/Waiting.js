@@ -126,7 +126,7 @@ export default Waiting = ({ navigation }) => {
     //   }
     // });
     // playerList = list;
-    //playerList = ["Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10"];
+    playerList = ["Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10"];
     setPlayersView(renderPlayersList());
     if (status === "RUNNING") {
       navigation.replace("InGame");
