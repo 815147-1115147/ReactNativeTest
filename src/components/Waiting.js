@@ -14,11 +14,11 @@ import Icon from "react-native-vector-icons";
 export default Waiting = ({ navigation }) => {
   const MMKV = new MMKVStorage.Loader().initialize();
 
-  // const [game, setGame] = useState(MMKV.getMap("joinedGame"));
+  const [game, setGame] = useState(MMKV.getMap("joinedGame"));
   const [roomInfo, setRoomInfo] = useState(null);
   const [playerView, setPlayersView] = useState([]);
-  // const gameID = MMKV.getString("gameID");
-  // const userID = MMKV.getString("userID");
+  const gameID = MMKV.getString("gameID");
+  const userID = MMKV.getString("userID");
   let status;
   let playerList = [];
 
@@ -47,18 +47,18 @@ export default Waiting = ({ navigation }) => {
   useEffect(() => {
     if (roomInfo == null) return;
     status = roomInfo.status;
-    //let game = MMKV.getMap("joinedGame");
+    let game = MMKV.getMap("joinedGame");
     game.players = roomInfo.players;
     let list = [];
-    // roomInfo.players.map((value) => {
-    //   list.push(value.name);
-    //   if (value.team != null) {
-    //     if (value.pid === MMKV.getString("userID")) {
-    //       MMKV.setString("team", value.team);
-    //       MMKV.setInt("key", value.key);
-    //     }
-    //   }
-    // });
+    roomInfo.players.map((value) => {
+      list.push(value.name);
+      if (value.team != null) {
+        if (value.pid === MMKV.getString("userID")) {
+          MMKV.setString("team", value.team);
+          MMKV.setInt("key", value.key);
+        }
+      }
+    });
     playerList = list;
     setPlayersView(renderPlayersList());
     if (status === "RUNNING") {
