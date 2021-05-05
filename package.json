@@ -13,6 +13,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+<<<<<<< HEAD
     "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
     "@babel/preset-flow": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",
@@ -23,6 +24,10 @@
     "@react-native-firebase/auth": "^11.3.0",
     "@react-native-firebase/database": "^11.3.0",
     "@react-native-mapbox-gl/maps": "^8.2.0-beta1",
+=======
+    "@react-native-async-storage/async-storage": "^1.15.4",
+    "@react-native-community/masked-view": "^0.1.11",
+>>>>>>> parent of 876f8ba (.)
     "@react-navigation/native": "^5.9.3",
     "@react-navigation/stack": "^5.14.3",
     "core-js": "^2.6.12",
@@ -53,10 +58,14 @@
     "react-native-progress-button": "^1.0.3",
     "react-native-reanimated": "^2.0.0",
     "react-native-safe-area-context": "^3.2.0",
+<<<<<<< HEAD
     "react-native-screens": "^2.18.1",
     "react-native-step-modal": "^1.2.1",
     "react-native-swiper": "^1.6.0",
     "react-native-use-modal-hooks": "^1.3.0",
+=======
+    "react-native-screens": "^3.1.1",
+>>>>>>> parent of 876f8ba (.)
     "react-native-vector-icons": "^8.1.0",
     "react-scripts": "^4.0.3",
     "socket.io-client": "^4.0.1",
