@@ -2,17 +2,17 @@
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
 import { Avatar, Button } from "react-native-elements";
-// import database from "@react-native-firebase/database";
-// import MMKVStorage from "react-native-mmkv-storage";
+import database from "@react-native-firebase/database";
+import MMKVStorage from "react-native-mmkv-storage";
 
 import { color } from "../constants.json";
 import { deleteGame, getGame } from "./Helper/server";
 import useInterval from "./Helper/useInterval";
-// import { wsSend } from "../App";
+import { wsSend } from "../App";
 import Icon from "react-native-vector-icons";
 
 export default Waiting = ({ navigation }) => {
-  // const MMKV = new MMKVStorage.Loader().initialize();
+  const MMKV = new MMKVStorage.Loader().initialize();
 
   // const [game, setGame] = useState(MMKV.getMap("joinedGame"));
   const [roomInfo, setRoomInfo] = useState(null);
@@ -21,71 +21,6 @@ export default Waiting = ({ navigation }) => {
   // const userID = MMKV.getString("userID");
   let status;
   let playerList = [];
-
-  var game = {
-    gid: "Game ID",
-    gname: "gameName",
-    status: "PREPARE",
-    //hostID: MMKV.getString("userID"),
-    hostID: "userID",
-    //hostName: MMKV.getString("userName"),
-    hostName: "userName",
-    checkpoints: [
-        {
-            cp1: "cp1",
-            cp2: "cp2",
-            cp3: "cp3",
-            cp4: "cp4",
-            cp5: "cp5",
-        },
-      ],
-    players: [
-        {
-          //   pid: MMKV.getString("userID"),
-          //   name: MMKV.getString("userName"),
-          //   avatar: "None",
-          pid: "pid1",
-          name: "userName1",
-          avatar: "None1",
-        },
-        {
-          pid: "pid2",
-          name: "userName2",
-          avatar: "None2",
-        },
-        {
-          pid: "pid3",
-          name: "userName3",
-          avatar: "None3",
-        },
-      //   {
-      //     pid: "pid4",
-      //     name: "userName4",
-      //     avatar: "None4",
-      //   },
-      //   {
-      //     pid: "pid5",
-      //     name: "userName5",
-      //     avatar: "None5",
-      //   },
-      //   {
-      //     pid: "pid6",
-      //     name: "userName6",
-      //     avatar: "None6",
-      //   },
-      //   {
-      //     pid: "pid7",
-      //     name: "userName7",
-      //     avatar: "None7",
-      //   },
-      //   {
-      //     pid: "pid8",
-      //     name: "userName8",
-      //     avatar: "None8",
-      //   }
-      ],
-    teams: ["RED", "BLUE"],
-  };
 
   const deleteRoom = () => {
     deleteGame.then(() => {
@@ -104,7 +39,7 @@ export default Waiting = ({ navigation }) => {
 
   useEffect(() => {
     let list = [];
-    // game.players.map((value) => list.push(value.name));
+    game.players.map((value) => list.push(value.name));
     playerList = list;
     setPlayersView(renderPlayersList());
   }, []);
