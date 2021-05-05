@@ -162,7 +162,8 @@ export default Waiting = ({ navigation }) => {
         titleStyle={{ color: "white", fontSize: 24 }}
         buttonStyle={{ backgroundColor: color.brown }}
         onPress={() => {
-          wsSend(JSON.stringify({ header: "START", content: gameID }));
+          //wsSend(JSON.stringify({ header: "START", content: gameID }));
+          console.log("confirm");
         }}
       ></Button>
     </SafeAreaView>
