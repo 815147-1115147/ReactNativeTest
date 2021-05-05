@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
 import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
-import { Avatar, Button } from "react-native-elements";
+import { Avatar, Button } from "react-native-ui-lib";
 // import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 
