@@ -1,3 +1,4 @@
+<<<<<<< HEAD:src/App.js
 import React, { useState, useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -18,6 +19,21 @@ import Waiting from "./components/Waiting";
 // import history from "./components/history";
 import { color } from "./constants";
 [];
+=======
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
+import React, { useState, useEffect } from 'react';
+import type {Node} from 'react';
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import Waiting from "./src/Waiting";
+>>>>>>> parent of 876f8ba (.):App.js
 
 import {
   SafeAreaView,
@@ -39,7 +55,33 @@ import {
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const Section = ({children, title}): Node => {
+  const isDarkMode = useColorScheme() === 'dark';
+  return (
+    <View style={styles.sectionContainer}>
+      <Text
+        style={[
+          styles.sectionTitle,
+          {
+            color: isDarkMode ? Colors.white : Colors.black,
+          },
+        ]}>
+        {title}
+      </Text>
+      <Text
+        style={[
+          styles.sectionDescription,
+          {
+            color: isDarkMode ? Colors.light : Colors.dark,
+          },
+        ]}>
+        {children}
+      </Text>
+    </View>
+  );
+};
+
+const App: () => Node = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
   const isDarkMode = useColorScheme() === 'dark';
