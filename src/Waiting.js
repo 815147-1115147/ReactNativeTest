@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image} from "react-native";
-import { Avatar, Button, Card} from "react-native-elements";
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image } from "react-native";
+import { Avatar, Button, Card, ListItem} from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -149,7 +149,7 @@ export default Waiting = ({ navigation }) => {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
           <View style={styles.leftPlayer} key={i}>
-            <Card containerStyle={{ borderTopRightRadius: 50, borderBottomRightRadius: 50, width: "100%", height: 100, backgroundColor:"FFFFFF"}}>
+            {/* <Card containerStyle={{ borderTopRightRadius: 50, borderBottomRightRadius: 50, width: "100%", height: 100, backgroundColor:"FFFFFF"}}>
               <View>
                 <Text style={styles.RplayerName} key={i}>
                   {playerList[i]}
@@ -160,16 +160,25 @@ export default Waiting = ({ navigation }) => {
                 >
                 </Image>
               </View>
-            </Card>
+            </Card> */}
+            <ListItem>
+              <Avatar
+                title={name[0]}
+                source={{ uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg" }}
+              />
+              <ListItem.Content>
+                <ListItem.Title>{playerList[i]}</ListItem.Title>
+              </ListItem.Content>
+            
+            </ListItem>;
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
             <Avatar
               rounded
-
               source={{
-                uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-              }}
-            //icon={{name: 'home'}}
+              uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+            }}
+            //icon={{ name: 'home' }}
             />
             <Text style={styles.RplayerName} key={i + 1}>
               {playerList[i + 1]}
