@@ -51,13 +51,13 @@ const App = () => {
             headerShown: false,
           })}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="LoadingHome"
           component={LoadingHome}
           options={() => ({
             headerShown: false,
           })}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
