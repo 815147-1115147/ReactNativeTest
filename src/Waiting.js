@@ -1,7 +1,7 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Text, ScrollView, StyleSheet, View } from "react-native";
-import { Avatar, Button} from "react-native-elements";
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image } from "react-native";
+import { Avatar, Button, Card, ListItem } from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -26,76 +26,76 @@ export default Waiting = ({ navigation }) => {
   const userID = "userID";
   let status;
   let playerList = [];
-  
-  var Player = function() {
+
+  var Player = function () {
     this.pid = pid;
     this.name = name;
   };
 
   var game = {
-      gid: "Game ID",
-      gname: "gameName",
-      status: "PREPARE",
-      //hostID: MMKV.getString("userID"),
-      hostID: "userID",
-      //hostName: MMKV.getString("userName"),
-      hostName: "userName",
-      checkpoints: [
-          {
-              cp1: "cp1",
-              cp2: "cp2",
-              cp3: "cp3",
-              cp4: "cp4",
-              cp5: "cp5",
-          },
-        ],
-      players: [
-          {
-            //   pid: MMKV.getString("userID"),
-            //   name: MMKV.getString("userName"),
-            //   avatar: "None",
-            pid: "pid1",
-            name: "userName1",
-            avatar: "None1",
-          },
-          {
-            pid: "pid2",
-            name: "userName2",
-            avatar: "None2",
-          },
-          {
-            pid: "pid3",
-            name: "userName3",
-            avatar: "None3",
-          },
-        //   {
-        //     pid: "pid4",
-        //     name: "userName4",
-        //     avatar: "None4",
-        //   },
-        //   {
-        //     pid: "pid5",
-        //     name: "userName5",
-        //     avatar: "None5",
-        //   },
-        //   {
-        //     pid: "pid6",
-        //     name: "userName6",
-        //     avatar: "None6",
-        //   },
-        //   {
-        //     pid: "pid7",
-        //     name: "userName7",
-        //     avatar: "None7",
-        //   },
-        //   {
-        //     pid: "pid8",
-        //     name: "userName8",
-        //     avatar: "None8",
-        //   }
-        ],
-      teams: ["RED", "BLUE"],
-    };
+    gid: "Game ID",
+    gname: "gameName",
+    status: "PREPARE",
+    //hostID: MMKV.getString("userID"),
+    hostID: "userID",
+    //hostName: MMKV.getString("userName"),
+    hostName: "userName",
+    checkpoints: [
+      {
+        cp1: "cp1",
+        cp2: "cp2",
+        cp3: "cp3",
+        cp4: "cp4",
+        cp5: "cp5",
+      },
+    ],
+    players: [
+      {
+        //   pid: MMKV.getString("userID"),
+        //   name: MMKV.getString("userName"),
+        //   avatar: "None",
+        pid: "pid1",
+        name: "userName1",
+        avatar: "None1",
+      },
+      {
+        pid: "pid2",
+        name: "userName2",
+        avatar: "None2",
+      },
+      {
+        pid: "pid3",
+        name: "userName3",
+        avatar: "None3",
+      },
+      //   {
+      //     pid: "pid4",
+      //     name: "userName4",
+      //     avatar: "None4",
+      //   },
+      //   {
+      //     pid: "pid5",
+      //     name: "userName5",
+      //     avatar: "None5",
+      //   },
+      //   {
+      //     pid: "pid6",
+      //     name: "userName6",
+      //     avatar: "None6",
+      //   },
+      //   {
+      //     pid: "pid7",
+      //     name: "userName7",
+      //     avatar: "None7",
+      //   },
+      //   {
+      //     pid: "pid8",
+      //     name: "userName8",
+      //     avatar: "None8",
+      //   }
+    ],
+    teams: ["RED", "BLUE"],
+  };
 
   const deleteRoom = () => {
     deleteGame.then(() => {
@@ -115,7 +115,7 @@ export default Waiting = ({ navigation }) => {
   useEffect(() => {
     let list = [];
     //game.players.map((value) => list.push(value.name));
-    playerList = ["Player1","Player2","Player3","Player4","Player5","Player6","Player7","Player8","Player9","Player10"];
+    playerList = ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8", "Player9", "Player10"];
     setPlayersView(renderPlayersList());
   }, []);
 
@@ -150,34 +150,28 @@ export default Waiting = ({ navigation }) => {
         <View style={styles.playerListRowConatiner} key={i % 2}>
           <View style={styles.leftPlayer} key={i}>
             <Text style={styles.LplayerName} key={i}>
-                {playerList[i]}
+              {playerList[i]}
             </Text>
-            <Avatar
+            {/* <View style={{ flex: 1, height: 100, alignContent: "center" }}> */}
+              <Avatar
                 rounded
+                size={40}
                 source={{
-                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
                 }}
-                //icon={{name: 'home'}}
-            />
-            {/* <Icon
-                reverse
-                name="sc-telegram"
-                type="evilicon"
-                size={20}
-                color="white"
-            /> */}
+              />
+            {/* </View> */}
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
             <Avatar
-                rounded
-                
-                source={{
-                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-                //icon={{name: 'home'}}
+              rounded
+              source={{
+                uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+              }}
+            //icon={{ name: 'home' }}
             />
-            <Text style={styles.RplayerName} key={i+1}>
-                {playerList[i+1]}
+            <Text style={styles.RplayerName} key={i + 1}>
+              {playerList[i + 1]}
             </Text>
           </View>
         </View>
@@ -187,16 +181,27 @@ export default Waiting = ({ navigation }) => {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
           <View style={styles.leftPlayer} key={i}>
-            <Text style={styles.LplayerName} key={i}>
+            <View style={{ flex: 3, height: "100%", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
+              <Text style={styles.LplayerName} key={i}>
                 {playerList[i]}
-            </Text>
-            <Avatar
+              </Text>
+            </View>
+            <View style={{ flex: 1, height: "100%", alignContent: "center" }}>
+              {/* <Avatar
                 rounded
+                size={40}
                 source={{
-                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
                 }}
-                //icon={{name: 'home'}}
-            />
+              /> */}
+              <Image
+                rounded
+                size={40}
+                source={{
+                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+                }}
+              />
+            </View>
           </View>
         </View>
       );
@@ -216,20 +221,20 @@ export default Waiting = ({ navigation }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-        <View style={styles.headerContainer}>
-            <Text style={styles.headerText}>
-                {`${game.hostName}'s Room`}
-                {`\nRoom ID: ${game.gid}`}
-            </Text>
-            <Avatar
-                rounded
-                //style={{alignSelf: "center"}}
-                source={{
-                    uri:"https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-                //icon={{name: 'home'}}
-            />
-        </View>
+      <View style={styles.headerContainer}>
+        <Text style={styles.headerText}>
+          {`${game.hostName}'s Room`}
+          {`\nRoom ID: ${game.gid}`}
+        </Text>
+        <Avatar
+          rounded
+          //style={{alignSelf: "center"}}
+          source={{
+            uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+          }}
+        //icon={{name: 'home'}}
+        />
+      </View>
       <ScrollView style={styles.playersListContainer}>{playerView}</ScrollView>
       <Button
         title={"Confirm"}
@@ -238,7 +243,7 @@ export default Waiting = ({ navigation }) => {
         buttonStyle={{ backgroundColor: color.brown }}
         onPress={() => {
           //wsSend(JSON.stringify({ header: "START", content: gameID }));
-          console.log("start"+gameID);
+          console.log("start" + gameID);
         }}
       ></Button>
     </SafeAreaView>
@@ -258,18 +263,18 @@ const styles = StyleSheet.create({
     width: "50%",
     borderTopRightRadius: 50,
     borderBottomRightRadius: 50,
-    //alignContent: "center",
+    alignContent: "center",
     justifyContent: "center",
     flexDirection: "row",
   },
   headerText: {
     fontSize: 14,
     fontWeight: "700",
-    width:"90%",
+    width: "90%",
     color: "white",
     textAlign: "left",
     textAlignVertical: "center",
-    paddingLeft:"10%",
+    paddingLeft: "10%",
   },
   LplayerName: {
     fontSize: 14,
@@ -278,7 +283,7 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "center",
     textAlignVertical: "center",
-    paddingLeft:"10%",
+    paddingLeft: 5,
   },
   RplayerName: {
     fontSize: 14,
@@ -310,12 +315,11 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection: "row",
     justifyContent: "space-between",
-    //padding: 5,
     marginBottom: 5,
   },
   leftPlayer: {
     //flex: 0.36,
-    flexDirection:"row",
+    flexDirection: "row",
     width: "40%",
     height: "100%",
     borderTopRightRadius: 50,
@@ -326,7 +330,7 @@ const styles = StyleSheet.create({
   },
   rightPlayer: {
     //flex: 0.36,
-    flexDirection:"row",
+    flexDirection: "row",
     width: "40%",
     height: "100%",
     borderTopLeftRadius: 50,
