@@ -204,7 +204,9 @@ export default Waiting = ({ navigation }) => {
         </Text>
         <Image style={styles.cardImage} source={{ uri: link }} />
       </View>
-      <ScrollView style={styles.playersListContainer}>{playerView}</ScrollView>
+      <View style={styles.playersListContainer}>
+        <ScrollView>{playerView}</ScrollView>
+      </View>
       <Button
         title={"Confirm"}
         containerStyle={styles.button}
@@ -227,7 +229,7 @@ const styles = StyleSheet.create({
     width: "45%",
     height: "10%",
     flexDirection: 'row',
-    marginTop: height*0.05,
+    marginTop: height * 0.05,
     marginBottom: 30,
     borderBottomRightRadius: height / 20,
     borderTopRightRadius: height / 20,
@@ -264,9 +266,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     textAlignVertical: "center",
     marginLeft: -40,
-    flex:3,
+    flex: 3,
   },
-  playersListContainer: { height: height * 0.6 },
+  playersListContainer: { height: "50%" },
   button: {
     height: 60,
     width: "50%",
