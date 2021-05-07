@@ -37,22 +37,17 @@ const Stack = createStackNavigator();
 const App = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="Waiting"
           component={Waiting}
           options={() => ({
             headerShown: false,
           })}
-        /> */}
+        />
         <Stack.Screen
           name="Test"
           component={Test}
@@ -60,35 +55,16 @@ const App = () => {
             headerShown: false,
           })}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           name="LoadingHome"
           component={LoadingHome}
           options={() => ({
             headerShown: false,
           })}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
