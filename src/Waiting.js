@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image } from "react-native";
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image, StatusBar } from "react-native";
 import { Avatar, Button, Card, ListItem } from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
@@ -26,6 +26,7 @@ export default Waiting = ({ navigation }) => {
   const userID = "userID";
   let status;
   let playerList = [];
+  var { height, width } = Dimensions.get('window');
 
   var Player = function () {
     this.pid = pid;
@@ -153,13 +154,13 @@ export default Waiting = ({ navigation }) => {
               {playerList[i]}
             </Text>
             {/* <View style={{ flex: 1, height: 100, alignContent: "center" }}> */}
-              <Avatar
-                rounded
-                size={40}
-                source={{
-                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-              />
+            <Avatar
+              rounded
+              size={40}
+              source={{
+                uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
+              }}
+            />
             {/* </View> */}
           </View>
           <View style={styles.rightPlayer} key={i + 1}>
@@ -220,7 +221,7 @@ export default Waiting = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <View style={styles.headerContainer}>
         <Text style={styles.headerText}>
           {`${game.hostName}'s Room`}
@@ -246,26 +247,26 @@ export default Waiting = ({ navigation }) => {
           console.log("start" + gameID);
         }}
       ></Button>
-    </SafeAreaView>
+    </View>
   );
 };
 const styles = StyleSheet.create({
   container: {
     //backgroundColor: color.offWhite,
+    marginTop: StatusBar.currentHeight || 0,
     backgroundColor: color.darkGrey,
     flex: 1,
   },
   headerContainer: {
-    marginTop: "10%",
-    marginBottom: "20%",
+    width: "45%",
     height: "10%",
+    flexDirection: 'row',
+    marginTop: 10,
+    borderBottomRightRadius: height / 20,
+    borderTopRightRadius: height / 20,
     backgroundColor: "#00000080",
-    width: "50%",
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    alignContent: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   headerText: {
     fontSize: 14,

@@ -11,6 +11,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Waiting from "./src/Waiting";
 import LoadingHome from "./src/LoadingHome";
+import Test from "./src/Test";
+import Temp from "./src/Temp";
 
 import {
   SafeAreaView,
@@ -44,9 +46,16 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
           name="Waiting"
           component={Waiting}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        <Stack.Screen
+          name="Test"
+          component={Test}
           options={() => ({
             headerShown: false,
           })}
