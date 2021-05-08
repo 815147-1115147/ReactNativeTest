@@ -15,7 +15,7 @@ var player = {
     avatar: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg"
 }
 
-export default Waiting = ({ navigation }) => {
+export default Test = ({ navigation }) => {
     const [roomInfo, setRoomInfo] = useState(null);
     const [playerView, setPlayersView] = useState([]);
 
@@ -94,9 +94,6 @@ export default Waiting = ({ navigation }) => {
 };
 const styles = StyleSheet.create({
     container: {
-        //backgroundColor: color.offWhite,
-        // width: width,
-        // height: height,
         backgroundColor: color.darkGrey,
         flex: 1,
 
