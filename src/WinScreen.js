@@ -1,6 +1,6 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image, StatusBar, Dimensions } from "react-native";
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image, StatusBar, Dimensions, ImageBackground } from "react-native";
 import {
     Avatar,
     Button,
@@ -159,7 +159,7 @@ export default Waiting = ({ navigation }) => {
                             </Text>
                         </View>
                         <View style={{ justifyContent: "center", alignContent: "space-around", }}>
-                            <Text style={[styles.PlayerName, ]}>
+                            <Text style={[styles.PlayerName,]}>
                                 {playerList[i]}
                                 {"\n2.2KM / 7R"}
                             </Text>
@@ -202,6 +202,24 @@ export default Waiting = ({ navigation }) => {
         if (i < playerList.length) {
             list.push(
                 //Blue Wins
+                // <View style={styles.playerListRowConatiner} key={i % 2}>
+                //     <View style={styles.LeftPlayerWin} key={i}>
+                //         <View style={{ marginStart: 20, marginEnd: 10 }}>
+                //             <Text style={[styles.WinText, { color: "#98E7FD" }]}>
+                //                 {"WIN"}
+                //             </Text>
+                //         </View>
+                //         <View style={{ justifyContent: "center", alignContent: "space-around", }}>
+                //             <Text style={[styles.PlayerName]}>
+                //                 {playerList[i]}
+                //                 {"\n2.2KM / 7R"}
+                //             </Text>
+                //         </View>
+                //         <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+                //     </View>
+                // </View>
+
+                //with crown
                 <View style={styles.playerListRowConatiner} key={i % 2}>
                     <View style={styles.LeftPlayerWin} key={i}>
                         <View style={{ marginStart: 20, marginEnd: 10 }}>
@@ -209,13 +227,20 @@ export default Waiting = ({ navigation }) => {
                                 {"WIN"}
                             </Text>
                         </View>
-                        <View style={{ justifyContent: "center", alignContent: "space-around", }}>
+                        <View style={{ justifyContent: "center", alignContent: "space-around", paddingEnd: 70 }}>
                             <Text style={[styles.PlayerName]}>
                                 {playerList[i]}
                                 {"\n2.2KM / 7R"}
                             </Text>
                         </View>
-                        <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+                        <View style={{ top: -20, paddingStart: 10, position: "absolute" }}>
+                            <View style={{ top: 30, right: 5, bottom: 0 }}>
+                                <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+                            </View>
+                            <View style={{ top: -43, left: 25, width: 40, height: 40 }}>
+                                <Image style={styles.Crown} source={require("./image/PurpleCrown.png")} />
+                            </View>
+                        </View>
                     </View>
                 </View>
 
@@ -419,11 +444,10 @@ const styles = StyleSheet.create({
         textAlignVertical: "center",
         justifyContent: "center"
     },
-    // Icon: {
-    //   // backgroundColor: "#00000080",
-    //   color: "black",
-    //   width: height * 0.1,
-    //   height: height * 0.1,
-    //   // justifyContent: "center"
-    // }
+    Crown: {
+        flex: 1,
+        width: null,
+        height: null,
+        resizeMode: "cover",
+    }
 });
