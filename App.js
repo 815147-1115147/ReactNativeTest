@@ -9,6 +9,7 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
+import InGamePlayerView from "./src/InGamePlayerView";
 // import Waiting from "./src/Waiting";
 // import LoadingHome from "./src/LoadingHome";
 // import SelectCheckPoint from "./src/SelectCheckPoint";
@@ -71,9 +72,16 @@ const App = () => {
             headerShown: false,
           })}
         /> */}
-        <Stack.Screen
+        {/* <Stack.Screen
           name="WinScreen"
           component={WinScreen}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        <Stack.Screen
+          name="InGamePlayerView"
+          component={InGamePlayerView}
           options={() => ({
             headerShown: false,
           })}
