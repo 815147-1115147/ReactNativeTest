@@ -182,12 +182,6 @@ export default Waiting = ({ navigation }) => {
                   {"+"}
                 </Text>
               </TouchableOpacity>
-              {/* <Icon
-                iconStyle={styles.Icon}
-                name="back"
-                type="Entypo"
-                alignSelf="center"
-              ></Icon> */}
             </View>
           </View>
         </View>
