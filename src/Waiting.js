@@ -1,19 +1,27 @@
 /* eslint-disable quotes */
 import React, { useState, useEffect } from "react";
-import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image } from "react-native";
-import { Avatar, Button, Card, ListItem } from "react-native-elements";
+import { SafeAreaView, Text, ScrollView, StyleSheet, View, Image, StatusBar, Dimensions } from "react-native";
+import {
+  Avatar,
+  Button,
+  Card,
+  ListItem,
+  Icon
+} from "react-native-elements";
 //import database from "@react-native-firebase/database";
 import MMKVStorage from "react-native-mmkv-storage";
 // import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { color } from "../constants.json";
 //import { deleteGame, getGame } from "./Helper/server";
-//import useInterval from "./Helper/useInterval";
 import useInterval from "./useInterval";
 //import { Icon } from "react-native-elements/dist/icons/Icon";
-import Icon from "react-native-vector-icons";
+// import Icon from "react-native-vector-icons";
+import { TouchableOpacity } from "react-native-gesture-handler";
 //import { wsSend } from "../App";
-// AsyncStorage.clear();
+
+var { height, width } = Dimensions.get('window');
+var link = "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg";
 
 export default Waiting = ({ navigation }) => {
   const MMKV = new MMKVStorage.Loader().initialize();
@@ -26,11 +34,6 @@ export default Waiting = ({ navigation }) => {
   const userID = "userID";
   let status;
   let playerList = [];
-
-  var Player = function () {
-    this.pid = pid;
-    this.name = name;
-  };
 
   var game = {
     gid: "Game ID",
@@ -115,7 +118,7 @@ export default Waiting = ({ navigation }) => {
   useEffect(() => {
     let list = [];
     //game.players.map((value) => list.push(value.name));
-    playerList = ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8", "Player9", "Player10"];
+    playerList = ["Player1", "Player2", "Player3", "Player4", "Player5", "Player6", "Player7", "Player8", "Player9"];//, "Player10"];
     setPlayersView(renderPlayersList());
   }, []);
 
@@ -148,29 +151,15 @@ export default Waiting = ({ navigation }) => {
     for (i = 0; i + 1 < playerList.length; i += 2) {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
-          <View style={styles.leftPlayer} key={i}>
-            <Text style={styles.LplayerName} key={i}>
+          <View style={styles.LeftPlayer} key={i}>
+            <Text style={[styles.PlayerName, { paddingLeft: 20 }]}>
               {playerList[i]}
             </Text>
-            {/* <View style={{ flex: 1, height: 100, alignContent: "center" }}> */}
-              <Avatar
-                rounded
-                size={40}
-                source={{
-                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-              />
-            {/* </View> */}
+            <Image style={styles.PlayerAvatar} source={{ uri: link }} />
           </View>
-          <View style={styles.rightPlayer} key={i + 1}>
-            <Avatar
-              rounded
-              source={{
-                uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-              }}
-            //icon={{ name: 'home' }}
-            />
-            <Text style={styles.RplayerName} key={i + 1}>
+          <View style={styles.RightPlayer} key={i + 1}>
+            <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+            <Text style={[styles.PlayerName, { marginLeft: -40 }]}>
               {playerList[i + 1]}
             </Text>
           </View>
@@ -180,27 +169,43 @@ export default Waiting = ({ navigation }) => {
     if (i < playerList.length) {
       list.push(
         <View style={styles.playerListRowConatiner} key={i % 2}>
-          <View style={styles.leftPlayer} key={i}>
-            <View style={{ flex: 3, height: "100%", flexDirection: "column", justifyContent: "center", alignContent: "center" }}>
-              <Text style={styles.LplayerName} key={i}>
-                {playerList[i]}
-              </Text>
+          <View style={styles.LeftPlayer} key={i}>
+            <Text style={[styles.PlayerName, { paddingLeft: 20 }]}>
+              {playerList[i]}
+            </Text>
+            <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+          </View>
+          <View style={styles.RightPlayer}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <TouchableOpacity style={styles.AddButton}>
+                <Text style={styles.IconReplacementText}>
+                  {"+"}
+                </Text>
+              </TouchableOpacity>
             </View>
-            <View style={{ flex: 1, height: "100%", alignContent: "center" }}>
-              {/* <Avatar
-                rounded
-                size={40}
-                source={{
-                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-              /> */}
-              <Image
-                rounded
-                size={40}
-                source={{
-                  uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-                }}
-              />
+          </View>
+        </View>
+      );
+    }
+    else {
+      list.push(
+        <View style={styles.playerListRowConatiner} key={i % 2}>
+          <View style={styles.LeftPlayer} key={i}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <TouchableOpacity style={styles.AddButton}>
+                <Text style={styles.IconReplacementText}>
+                  {"+"}
+                </Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.RightPlayer}>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <TouchableOpacity style={styles.AddButton}>
+                <Text style={styles.IconReplacementText}>
+                  {"+"}
+                </Text>
+              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -220,22 +225,30 @@ export default Waiting = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.headerText}>
-          {`${game.hostName}'s Room`}
-          {`\nRoom ID: ${game.gid}`}
-        </Text>
-        <Avatar
-          rounded
-          //style={{alignSelf: "center"}}
-          source={{
-            uri: "https://images-na.ssl-images-amazon.com/images/S/pv-target-images/7bbe5762c79ee0ad11c1267483b4a2d5e12868de779eaf751e8e86596e978bbb._V_SX1080_.jpg",
-          }}
-        //icon={{name: 'home'}}
-        />
+    <View style={styles.container}>
+      <View style={{
+        justifyContent: "flex-start",
+        flexDirection: "row",
+        marginTop: height * 0.05,
+        marginBottom: height * 0.05,
+        alignItems: "baseline"
+      }}>
+        <View style={styles.headerContainer}>
+          <Text style={styles.headerText}>
+            {`${game.hostName}'s Room`}
+            {`\nRoom ID: ${game.gid}`}
+          </Text>
+          <Image style={styles.PlayerAvatar} source={{ uri: link }} />
+        </View>
+        <TouchableOpacity style={styles.backButton}>
+          <Text style={styles.IconReplacementText}>
+            {"<<"}
+          </Text>
+        </TouchableOpacity>
       </View>
-      <ScrollView style={styles.playersListContainer}>{playerView}</ScrollView>
+      <View style={styles.playersListContainer}>
+        <ScrollView>{playerView}</ScrollView>
+      </View>
       <Button
         title={"Confirm"}
         containerStyle={styles.button}
@@ -246,59 +259,87 @@ export default Waiting = ({ navigation }) => {
           console.log("start" + gameID);
         }}
       ></Button>
-    </SafeAreaView>
+    </View>
   );
 };
+
 const styles = StyleSheet.create({
   container: {
-    //backgroundColor: color.offWhite,
-    backgroundColor: color.darkGrey,
+    backgroundColor: color.offWhite,
     flex: 1,
   },
   headerContainer: {
-    marginTop: "10%",
-    marginBottom: "20%",
-    height: "10%",
+    width: width * 0.45,
+    height: height * 0.1,
+    flexDirection: 'row',
+    marginTop: height * 0.03,
+    paddingRight: 40,
+    marginBottom: height * 0.05,
+    borderBottomRightRadius: height / 20,
+    borderTopRightRadius: height / 20,
     backgroundColor: "#00000080",
-    width: "50%",
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    alignContent: "center",
-    justifyContent: "center",
-    flexDirection: "row",
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   headerText: {
-    fontSize: 14,
-    fontWeight: "700",
-    width: "90%",
-    color: "white",
+    fontSize: 10,
+    color: "#FFFFFF",
+    fontWeight: 'normal',
+    paddingLeft: 10,
     textAlign: "left",
-    textAlignVertical: "center",
-    paddingLeft: "10%",
   },
-  LplayerName: {
+  PlayerAvatar: {
+    borderRadius: height / 30,
+    height: height / 15,
+    width: height / 15,
+    marginHorizontal: height / 80,
+  },
+  playersListContainer: { height: "50%" },
+  playerListRowConatiner: {
+    height: height / 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  LeftPlayer: {
+    width: width * 0.40,
+    height: height * 0.1,
+    flexDirection: 'row',
+    backgroundColor: "#00000080",
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderRightWidth: 5,
+    borderBottomRightRadius: height * 0.05,
+    borderTopRightRadius: height * 0.05,
+    borderColor: "#98E7FD"
+  },
+  RightPlayer: {
+    width: width * 0.40,
+    height: height * 0.1,
+    flexDirection: 'row',
+    backgroundColor: "#00000080",
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
+    borderLeftWidth: 5,
+    borderBottomLeftRadius: height * 0.05,
+    borderTopLeftRadius: height * 0.05,
+    borderColor: "#FF8F62"
+  },
+  PlayerName: {
     fontSize: 14,
     fontWeight: "700",
-    width: "70%",
     color: "white",
     textAlign: "center",
     textAlignVertical: "center",
-    paddingLeft: 5,
+    flex: 3,
   },
-  RplayerName: {
-    fontSize: 14,
-    fontWeight: "700",
-    width: "70%",
-    color: "white",
-    textAlign: "center",
-    textAlignVertical: "center",
-    paddingRight: 5,
-  },
-  playersListContainer: { height: "60%" },
   button: {
-    height: 60,
+    height: 50,
     width: "50%",
-    marginVertical: 30,
+    marginVertical: 50,
     alignSelf: "center",
     color: color.brown,
     borderRadius: 10,
@@ -311,32 +352,37 @@ const styles = StyleSheet.create({
     shadowRadius: 15,
     elevation: 5,
   },
-  playerListRowConatiner: {
-    height: 100,
+  backButton: {
+    marginLeft: height / 6,
+    borderRadius: height / 60,
+    height: height / 15,
+    width: height / 15,
+    backgroundColor: color.brown,
     flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 5,
-  },
-  leftPlayer: {
-    //flex: 0.36,
-    flexDirection: "row",
-    width: "40%",
-    height: "100%",
-    borderTopRightRadius: 50,
-    borderBottomRightRadius: 50,
-    backgroundColor: "#00000080",
-    alignContent: "center",
+    alignItems: "baseline",
     justifyContent: "center",
+    marginHorizontal: height / 80,
   },
-  rightPlayer: {
-    //flex: 0.36,
-    flexDirection: "row",
-    width: "40%",
-    height: "100%",
-    borderTopLeftRadius: 50,
-    borderBottomLeftRadius: 50,
-    backgroundColor: "#00000080",
-    alignContent: "center",
-    justifyContent: "center",
+  AddButton: {
+    borderRadius: height / 30,
+    height: height / 15,
+    width: height / 15,
+    borderWidth: 2,
+    borderColor: "white",
+    alignItems: "center",
+    marginHorizontal: height / 80,
   },
+  IconReplacementText: {
+    fontSize: 30,
+    color: "white",
+    textAlignVertical: "center",
+    justifyContent: "center"
+  },
+  // Icon: {
+  //   // backgroundColor: "#00000080",
+  //   color: "black",
+  //   width: height * 0.1,
+  //   height: height * 0.1,
+  //   // justifyContent: "center"
+  // }
 });

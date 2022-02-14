@@ -9,8 +9,13 @@
 import React, { useState, useEffect } from 'react';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import Waiting from "./src/Waiting";
-import LoadingHome from "./src/LoadingHome";
+import InGamePlayerView from "./src/InGamePlayerView";
+// import Waiting from "./src/Waiting";
+// import LoadingHome from "./src/LoadingHome";
+// import SelectCheckPoint from "./src/SelectCheckPoint";
+// import Test from "./src/Test";
+// import Temp from "./src/Temp";
+import WinScreen from "./src/WinScreen";
 
 import {
   SafeAreaView,
@@ -35,25 +40,48 @@ const Stack = createStackNavigator();
 const App = () => {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
 
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
+        {/* <Stack.Screen
+          name="SelectCheckPoint"
+          component={SelectCheckPoint}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        {/* <Stack.Screen
+          name="Test"
+          component={Test}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        {/* <Stack.Screen
           name="Waiting"
           component={Waiting}
           options={() => ({
             headerShown: false,
           })}
-        />
-        <Stack.Screen
+        /> */}
+        {/* <Stack.Screen
           name="LoadingHome"
           component={LoadingHome}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        {/* <Stack.Screen
+          name="WinScreen"
+          component={WinScreen}
+          options={() => ({
+            headerShown: false,
+          })}
+        /> */}
+        <Stack.Screen
+          name="InGamePlayerView"
+          component={InGamePlayerView}
           options={() => ({
             headerShown: false,
           })}
@@ -62,24 +90,5 @@ const App = () => {
     </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
